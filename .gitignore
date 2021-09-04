@@ -12,6 +12,7 @@ Bulletins/**
 *.txt
 
 cached*
+ckpt*
 
 venv
 tensorflow*
