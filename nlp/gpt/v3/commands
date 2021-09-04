@@ -1,0 +1,64 @@
+python3 run_lm.py \
+        --model_type gpt2 \
+        --model_name_or_path antoiloui/belgpt2 \
+        --tokenizer_path antoiloui/belgpt2 \
+        --output_dir belgpt2 \
+        --overwrite_output_dir \
+        --do_train \
+        --train_data_file train_dataset.txt \
+        --per_gpu_train_batch_size 1 \
+        --num_train_epochs 3 \
+        --block_size 32 \
+        --save_steps 800 \
+        --warmup_steps 500 \
+
+---
+
+python3 run_lm.py \
+        --model_type gpt2 \
+        --model_name_or_path antoiloui/belgpt2 \
+        --tokenizer_path antoiloui/belgpt2 \
+        --train_data_file "train_dataset.txt" \
+        --do_train \
+        --do_eval \
+        --eval_data_file "test_dataset.txt" \
+        --per_gpu_train_batch_size 1 \
+        --save_steps -1 \
+        --num_train_epochs 5 \
+        --fp16 \
+        --output_dir=output
+
+---
+
+python run_lm_finetuning.py \
+    --output_dir=output \
+    --model_type=gpt2 \
+    --model_name_or_path=gpt2 \
+    --do_train \
+    --train_data_file="train_dataset.txt" \
+    --do_eval \
+    --eval_data_file="test_dataset.txt"
+
+---
+Test hugging face generic script
+
+python run_clm.py \
+        --model_name_or_path distilgpt2 \
+        --output_dir output \
+        --dataset_name wikitext \
+        --dataset_config_name wikitext-103-raw-v1
+
+Result: On Colab Pro (P100 GPU, RAM 25G), resource exhausted
+
+Limit:                     16185556992
+InUse:                     14707996160
+MaxInUse:                  14707996160
+NumAllocs:                        1604
+MaxAllocSize:               1646821376
+Reserved:                            0
+PeakReserved:                        0
+LargestFreeBlock:                    0
+
+2021-08-20 06:52:19.883845: W tensorflow/core/common_runtime/bfc_allocator.cc:468] **************************************________******************************************************
+2021-08-20 06:52:19.883904: W tensorflow/core/framework/op_kernel.cc:1692] OP_REQUIRES failed at strided_slice_op.cc:138 : Resource exhausted: OOM when allocating tensor with shape[8,1023,50257] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+Traceback (most recent call last):

@@ -1,7 +1,21 @@
 .DS_Store
+.vscode
 
 Bulletins
 Bulletins/**
 
 *.csv
 *.pdf
+*.numbers
+*.bin
+*.pt
+*.txt
+
+cached*
+
+venv
+tensorflow*
+
+web
+**/models
+**/runs
