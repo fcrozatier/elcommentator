@@ -1,6 +1,6 @@
 # Elcommentator
 
-Ce repo contient toute la logique du générateur de commentaires trimestriels [elcommentator](http://elcommentator.sciency.co/).
+Ce repo contient toute la logique du générateur de commentaires trimestriels elcommentator
 
 Ce code est ensuite implémenté en un backend Flask, et un frontend Svelte.
 
